@@ -1,0 +1,8 @@
+# Strategy docs — never commit (per AGENTS.md)
+private/
+
+# macOS
+.DS_Store
+
+# Handover archive
+humanyxai-kimi-code-handover.zip

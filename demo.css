@@ -1,0 +1,235 @@
+/* ============================================================
+   HumanyxAI — Voice Agent Demo (shared styles for both concepts)
+   Concept D tokens: grey surface, Playfair/Inter, 8px, frosted glass
+   ============================================================ */
+
+:root {
+  --surface: #efeff2;
+  --surface-dim: #dcdce1;
+}
+
+.demo-body {
+  background:
+    radial-gradient(1100px 650px at 80% 20%, rgba(45,91,255,.05), transparent 60%),
+    var(--surface);
+  min-height: 100vh;
+}
+
+.demo-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 48px 120px;
+}
+
+.demo-head { text-align: center; margin-bottom: 56px; }
+.demo-head .eyebrow { justify-content: center; }
+.demo-head .eyebrow::after { content: ""; width: 22px; height: 1px; background: var(--blue); display: inline-block; }
+.demo-head h1 { font-size: clamp(36px, 4.2vw, 54px); margin: 22px 0 18px; }
+.demo-head h1 em { font-style: italic; font-weight: 500; color: var(--blue); }
+.demo-head p { color: var(--ink-soft); max-width: 56ch; margin: 0 auto; font-size: 15.5px; }
+
+/* ---------- voice picker ---------- */
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.voice-card {
+  background: rgba(255,255,255,.65);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.22,1,.36,1);
+  position: relative;
+  text-align: left;
+  font-family: var(--sans);
+}
+.voice-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); background: #fff; }
+.voice-card.active {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue), 0 12px 32px -12px rgba(45,91,255,.35);
+  background: #fff;
+}
+.voice-card .vc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.voice-card .vc-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 17px; font-weight: 600; color: #fff;
+}
+.voice-card[data-gender="f"] .vc-avatar { background: linear-gradient(135deg, #2d5bff, #6c8bff); }
+.voice-card[data-gender="m"] .vc-avatar { background: linear-gradient(135deg, #17161d, #4b4a55); }
+.voice-card .vc-name { font-weight: 600; font-size: 15px; }
+.voice-card .vc-desc { font-size: 12px; color: var(--ink-faint); margin-top: 3px; }
+.voice-card .vc-play {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-soft);
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.voice-card .vc-play:hover { border-color: var(--blue); color: var(--blue); }
+.voice-card.active .vc-play { border-color: var(--blue); color: var(--blue); }
+.voice-card .vc-play.playing { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+/* ---------- agent console ---------- */
+.console {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.console-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 26px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(250,249,254,.8);
+}
+.console-head .ch-left { display: flex; align-items: center; gap: 14px; }
+.console-head .ch-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, #2d5bff, #6c8bff);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 600; font-size: 18px; color: #fff;
+  position: relative;
+}
+.console-head .ch-name { font-weight: 600; font-size: 15px; }
+.console-head .ch-status { font-size: 12px; color: var(--ink-faint); display: flex; align-items: center; gap: 7px; margin-top: 2px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #b9b8c2; transition: background .3s; }
+.status-dot.live { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.15); }
+
+/* call-record transcript */
+.transcript {
+  padding: 26px;
+  min-height: 300px;
+  max-height: 380px;
+  overflow-y: auto;
+  font-size: 13.5px;
+}
+.transcript .t-empty {
+  height: 260px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--ink-faint); gap: 12px; text-align: center;
+}
+.transcript .t-empty .icon { opacity: .4; }
+.t-row {
+  display: grid;
+  grid-template-columns: 52px 92px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(23,22,29,.06);
+  animation: tIn .45s cubic-bezier(.22,1,.36,1);
+}
+@keyframes tIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.t-row .t-time { font-family: ui-monospace, monospace; font-size: 11px; color: var(--ink-faint); padding-top: 2px; }
+.t-row .t-who {
+  font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  padding-top: 3px;
+}
+.t-row.agent .t-who { color: var(--blue); }
+.t-row.caller .t-who { color: var(--ink-faint); }
+.t-row .t-text { color: var(--ink-soft); line-height: 1.6; }
+.t-row.agent .t-text { color: var(--ink); }
+
+/* audio visualiser bars */
+.viz { display: flex; align-items: center; gap: 3px; height: 20px; }
+.viz span {
+  width: 3px; border-radius: 2px;
+  background: var(--blue);
+  height: 4px;
+  transition: height .15s;
+}
+.viz.on span { animation: vizB 1s ease-in-out infinite; }
+.viz.on span:nth-child(2) { animation-delay: .12s; }
+.viz.on span:nth-child(3) { animation-delay: .24s; }
+.viz.on span:nth-child(4) { animation-delay: .36s; }
+.viz.on span:nth-child(5) { animation-delay: .48s; }
+.viz.on span:nth-child(6) { animation-delay: .6s; }
+.viz.on span:nth-child(7) { animation-delay: .3s; }
+@keyframes vizB { 0%,100% { height: 4px; } 50% { height: 18px; } }
+
+/* talk button */
+.talk-btn {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 17px;
+  font-family: var(--sans); font-size: 14.5px; font-weight: 600;
+  border: none; border-radius: var(--radius);
+  background: var(--blue); color: #fff;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 10px 30px -10px rgba(45,91,255,.5);
+}
+.talk-btn:hover { background: var(--blue-deep); transform: translateY(-2px); }
+.talk-btn.live { background: var(--ink); box-shadow: 0 10px 30px -10px rgba(23,22,29,.5); }
+.talk-btn .mic { display: flex; }
+
+/* dial-out card */
+.dial-card {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 26px;
+}
+.dial-card h3 { font-family: var(--serif); font-size: 20px; margin-bottom: 8px; }
+.dial-card p { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.6; margin-bottom: 18px; }
+.dial-form { display: flex; gap: 10px; }
+.dial-form input {
+  flex: 1;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius);
+  color: #fff;
+  font-family: var(--sans); font-size: 14px;
+  padding: 13px 16px;
+  outline: none;
+  transition: border-color .2s;
+}
+.dial-form input::placeholder { color: rgba(255,255,255,.4); }
+.dial-form input:focus { border-color: var(--blue); }
+.dial-form button {
+  background: var(--blue); color: #fff;
+  border: none; border-radius: var(--radius);
+  font-family: var(--sans); font-size: 13.5px; font-weight: 600;
+  padding: 13px 22px;
+  cursor: pointer;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.dial-form button:hover { background: var(--blue-deep); }
+.dial-note { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 14px; display: flex; gap: 7px; align-items: center; }
+.dial-success {
+  display: none;
+  text-align: center;
+  padding: 12px 0 4px;
+}
+.dial-success .ds-ring {
+  width: 52px; height: 52px; margin: 0 auto 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  display: flex; align-items: center; justify-content: center;
+  animation: dsPulse 1.6s ease-out infinite;
+}
+@keyframes dsPulse {
+  0% { box-shadow: 0 0 0 0 rgba(45,91,255,.5); }
+  100% { box-shadow: 0 0 0 18px rgba(45,91,255,0); }
+}
+.dial-success .ds-title { font-weight: 600; font-size: 15px; }
+.dial-success .ds-sub { font-size: 12.5px; color: rgba(255,255,255,.6); margin-top: 5px; }
+
+/* section label */
+.d-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.d-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+@media (max-width: 1020px) {
+  .demo-wrap { padding: 32px 24px 90px; }
+  .voice-grid { grid-template-columns: repeat(2, 1fr); }
+}

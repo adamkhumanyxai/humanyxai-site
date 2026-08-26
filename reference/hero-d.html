@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HumanyxAI — Concept D · Cinematic Split</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Concept D trial: cooler grey surface to blend with the footage */
+  :root {
+    --surface: #efeff2;
+    --surface-dim: #dcdce1;
+  }
+  body {
+    background:
+      radial-gradient(1200px 700px at 85% 30%, rgba(45,91,255,.05), transparent 60%),
+      var(--surface);
+  }
+  .nav-cta { background: rgba(255,255,255,.55); backdrop-filter: blur(6px); }
+  .nav-cta:hover { background: var(--blue); }
+  .btn-ghost { background: rgba(255,255,255,.5); backdrop-filter: blur(6px); }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(480px, 1fr) 1.1fr;
+    min-height: calc(100vh - 92px);
+  }
+
+  /* ---- copy side ---- */
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 72px 48px 48px;
+    max-width: 640px;
+    justify-self: end;
+    width: 100%;
+  }
+  .hero-copy h1 {
+    font-size: clamp(42px, 4.6vw, 64px);
+    margin: 26px 0 28px;
+  }
+  .hero-copy h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--blue);
+  }
+  .cta-row { display: flex; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
+  .trust-line {
+    margin-top: 42px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .trust-line .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-faint); }
+
+  /* ---- cinematic media side: bleeds to viewport edge ---- */
+  .hero-visual {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius) 0 0 var(--radius);
+    margin: 20px 0 20px 0;
+    isolation: isolate;
+    background: #14131b;
+  }
+  .hero-visual .zoom {
+    position: absolute; inset: 0;
+    animation: slowZoom 28s ease-in-out infinite alternate;
+  }
+  @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+  .hero-visual img, .hero-visual video {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 28%;
+  }
+  /* filmic grade: subtle top light + bottom vignette */
+  .hero-visual::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(20,19,27,.22) 0%, transparent 22%, transparent 55%, rgba(20,19,27,.5) 100%);
+    pointer-events: none;
+  }
+
+  /* frosted glass stat dock — B's stat bar, docked inside the frame */
+  .stat-dock {
+    position: absolute;
+    left: 28px; right: 28px; bottom: 28px;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 28px;
+    border-radius: var(--radius);
+    background: rgba(20,19,27,.38);
+    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #fff;
+  }
+  .stat-dock .stat .num { font-family: var(--serif); font-size: 24px; font-weight: 600; }
+  .stat-dock .stat .lbl { font-size: 10.5px; color: rgba(255,255,255,.65); margin-top: 3px; letter-spacing: .1em; text-transform: uppercase; }
+  .stat-dock .sep { width: 1px; background: rgba(255,255,255,.18); }
+
+  /* live-badge — signals the loop is motion, not a still */
+  .live-badge {
+    position: absolute;
+    top: 26px; right: 26px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.85);
+    background: rgba(20,19,27,.35);
+    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(10px);
+    padding: 8px 14px;
+    border-radius: 100px;
+  }
+  .live-badge .pulse {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 0 rgba(45,91,255,.7);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(45,91,255,.7); }
+    70% { box-shadow: 0 0 0 9px rgba(45,91,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(45,91,255,0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-visual .zoom { animation: none; }
+    .live-badge .pulse { animation: none; }
+  }
+
+  @media (max-width: 1020px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-copy { max-width: none; padding: 40px 24px 36px; justify-self: stretch; }
+    .hero-visual { margin: 0 24px 40px; border-radius: var(--radius); min-height: 62vh; }
+    .stat-dock { left: 14px; right: 14px; bottom: 14px; padding: 14px 18px; gap: 12px; }
+    .stat-dock .stat .num { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav rise rise-1">
+  <a href="index.html" class="nav-logo"><img src="assets/logo-nav.png" alt="HumanyxAI"></a>
+  <div class="nav-links">
+    <a href="#">Consulting</a>
+    <a href="#">Voice Agents</a>
+    <a href="#">Industries</a>
+    <a href="#">About</a>
+  </div>
+  <a href="#" class="nav-cta">Book a discovery call</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow rise rise-2">Independent AI Consultancy · Australia</p>
+    <h1 class="rise rise-3">AI that works <em>with</em> your people — not instead of them.</h1>
+    <p class="lede rise rise-4">HumanyxAI helps Australian organisations put artificial intelligence to work inside their teams. Strategy first, vendor-agnostic, and built around the people who'll actually use it.</p>
+    <div class="cta-row rise rise-5">
+      <a href="#" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
+      <a href="#" class="btn btn-ghost">Explore what we do</a>
+    </div>
+    <div class="trust-line rise rise-5">
+      <span>20 years enterprise delivery</span><span class="dot"></span>
+      <span>Australian data residency</span><span class="dot"></span>
+      <span>Human by design</span>
+    </div>
+  </div>
+
+  <div class="hero-visual rise rise-3">
+    <div class="zoom">
+      <video src="assets/hero-loop.mp4" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-label="People collaborating with a friendly AI assistant robot"></video>
+    </div>
+    <span class="live-badge rise rise-4"><span class="pulse"></span>Human × AI</span>
+    <div class="stat-dock rise rise-5">
+      <div class="stat"><div class="num">20+</div><div class="lbl">Years enterprise delivery</div></div>
+      <div class="sep"></div>
+      <div class="stat"><div class="num">1000s</div><div class="lbl">Projects deployed</div></div>
+      <div class="sep"></div>
+      <div class="stat"><div class="num">AU</div><div class="lbl">Data stays onshore</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="concept-nav">
+  <a href="index.html">← All</a>
+  <a href="hero-a.html">A · Split</a>
+  <a href="hero-b.html">B · Cinematic</a>
+  <a href="hero-c.html">C · Journal</a>
+  <a href="hero-d.html" class="active">D · Cinematic Split</a>
+  <a href="demo-1.html">Demo 1</a>
+  <a href="demo-2.html">Demo 2</a>
+</div>
+
+</body>
+</html>
