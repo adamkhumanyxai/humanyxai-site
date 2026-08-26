@@ -38,7 +38,7 @@ HANDOVER-PROMPT.md     # setup + kickoff prompt + phase plan for the build
 ```
 
 - No `package.json`, `pyproject.toml`, or any other manifest exists — there is deliberately nothing to install or configure.
-- `HANDOVER-PROMPT.md` mentions a custom skill at `.kimi-code/skills/humanyxai-brand/SKILL.md` (mirrored in `.agents/skills/`). **Those directories are not present in this checkout** — if a task relies on the brand skill, enforce the same rules directly from `private/DESIGN-SYSTEM.md` and `private/SOUL.md`.
+- `HANDOVER-PROMPT.md` mentions a custom skill at `.kimi-code/skills/humanyxai-brand/SKILL.md` (mirrored in `.agents/skills/`). **Present in this checkout** — it condenses the enforcement rules from `private/DESIGN-SYSTEM.md` and `private/SOUL.md`; the private docs remain the authoritative source for anything the skill doesn't cover.
 - `humanyxai-kimi-code-handover.zip` in the root is the original handover archive; it is gitignored. Do not extract or modify it.
 
 ## Authoritative documents (read in this order)
