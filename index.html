@@ -301,13 +301,6 @@
   .studio-col .console { flex: 1; display: flex; flex-direction: column; }
   .studio-col .transcript { min-height: 210px; max-height: 260px; flex: 1; }
   .studio-col .t-empty { height: 170px; font-size: 12.5px; }
-  .console-meta {
-    font-size: 11px;
-    color: var(--ink-faint);
-    letter-spacing: .04em;
-    text-align: center;
-    padding: 12px 18px 0;
-  }
 
   /* compact dial card (dark, secondary) */
   .demo-sec-grid .dial-card {
@@ -411,35 +404,7 @@
     .pillars { grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
   }
 
-  /* ---- S7: FAQ ---- */
-  .faq-list { margin-top: 40px; border-top: 1px solid var(--line); }
-  .faq-item { border-bottom: 1px solid var(--line); }
-  .faq-item summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 20px;
-    padding: 24px 4px;
-    font-family: var(--serif);
-    font-size: 19px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    transition: color .2s;
-  }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary:hover { color: var(--blue); }
-  .faq-item .fq-icon {
-    flex-shrink: 0;
-    font-family: var(--sans);
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--ink-faint);
-    transition: transform .3s cubic-bezier(.22,1,.36,1);
-  }
-  .faq-item[open] .fq-icon { transform: rotate(45deg); }
-  .faq-a { padding: 0 4px 26px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; max-width: 72ch; }
+  /* ---- S7: FAQ ---- (styles shared via styles.css) */
 
   /* ---- S8: final CTA (dark panel over brand imagery) ---- */
   .final-panel {
@@ -467,39 +432,8 @@
   }
   .btn-ghost-dark:hover { border-color: rgba(255,255,255,.6); transform: translateY(-2px); }
 
-  /* ---- footer ---- */
-  .site-footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 72px 0 40px; }
-  .foot-grid { display: flex; justify-content: space-between; gap: 64px; flex-wrap: wrap; }
-  .foot-brand img { height: 46px; width: auto; }
-  .foot-tag { font-size: 13.5px; color: var(--ink-soft); margin-top: 16px; max-width: 36ch; line-height: 1.6; }
-  .foot-cols { display: flex; gap: 88px; }
-  .foot-col h4 {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 16px;
-  }
-  .foot-col a { display: block; font-size: 13.5px; color: var(--ink-soft); padding: 5px 0; transition: color .2s; }
-  .foot-col a:hover { color: var(--ink); }
-  .foot-base {
-    margin-top: 64px;
-    padding-top: 22px;
-    border-top: 1px solid var(--line);
-    font-size: 12.5px;
-    color: var(--ink-faint);
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
   @media (max-width: 900px) {
     .final-panel { padding: 64px 24px; }
-    .foot-grid { flex-direction: column; gap: 40px; }
-    .foot-cols { gap: 48px; flex-wrap: wrap; }
   }
 </style>
 </head>

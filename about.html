@@ -4,25 +4,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — HumanyxAI</title>
-<meta name="description" content="HumanyxAI — independent Australian AI consultancy. Human by design.">
+<meta name="description" content="Twenty years of enterprise delivery, working for you directly. HumanyxAI is one operator with thousands of complex deployments behind it — not an agency.">
+<meta property="og:title" content="About — HumanyxAI">
+<meta property="og:description" content="Twenty years of enterprise delivery, working for you directly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humanyxai.com/about">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .stub { min-height: 62vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; }
-  .stub .eyebrow { justify-content: center; }
-  .stub .eyebrow::after { content: ""; width: 22px; height: 1px; background: var(--blue); display: inline-block; }
-  .stub h1 { font-size: clamp(34px, 4vw, 48px); margin: 22px 0 16px; }
-  .stub p { color: var(--ink-soft); font-size: 15px; max-width: 52ch; }
-  .stub .stub-links { margin-top: 28px; display: flex; gap: 24px; font-size: 13.5px; font-weight: 500; }
-  .stub .stub-links a { color: var(--blue); border-bottom: 1px solid rgba(45,91,255,.3); transition: border-color .2s; }
-  .stub .stub-links a:hover { border-bottom-color: var(--blue); }
+  /* ---- founder story split ---- */
+  .story-split {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .story-split .story-media {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .story-split .story-media img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 4.4; }
+  .story-body p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 20px; max-width: 58ch; }
+  .story-body p:first-of-type { font-size: 17px; color: var(--ink); }
+  .story-sig {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink);
+    margin-top: 28px;
+  }
+  .story-sig span { color: var(--blue); }
+
+  /* ---- values / ethics ---- */
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 48px; }
+  .value-card { border-top: 1px solid var(--line); padding-top: 22px; }
+  .value-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .value-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+
+  .ethics-panel {
+    background: var(--ink);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 64px 56px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow: 0 20px 50px -16px rgba(23,22,29,.4);
+  }
+  .ethics-panel::before {
+    content: "";
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,91,255,.2), transparent 70%);
+    bottom: -200px; left: -100px;
+    z-index: -1;
+  }
+  .ethics-panel .eyebrow { color: rgba(255,255,255,.55); }
+  .ethics-panel h2 { color: #fff; }
+  .ethics-list { margin-top: 40px; border-top: 1px solid rgba(255,255,255,.18); }
+  .ethics-list .eth {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,.14);
+    font-size: 15px;
+    color: rgba(255,255,255,.8);
+    line-height: 1.6;
+  }
+  .ethics-list .eth b { font-family: var(--serif); font-weight: 600; color: var(--blue-tint); min-width: 26px; }
+
+  @media (max-width: 900px) {
+    .story-split { grid-template-columns: 1fr; gap: 36px; }
+    .story-split .story-media img { aspect-ratio: 4 / 3.4; }
+    .values-grid { grid-template-columns: 1fr; gap: 28px; }
+    .ethics-panel { padding: 44px 28px; }
+  }
 </style>
 </head>
 <body>
 
-<nav class="site-nav" aria-label="Primary">
+<nav class="site-nav rise rise-1" aria-label="Primary">
   <a href="index.html" class="nav-logo"><img src="assets/logo-nav.png" alt="HumanyxAI"></a>
   <div class="nav-links" id="nav-links">
     <a href="consulting.html">Consulting</a>
@@ -36,15 +102,108 @@
   </button>
 </nav>
 
-<main class="stub">
-  <p class="eyebrow">Twenty years of enterprise delivery</p>
-  <h1>About</h1>
-  <p>This page is being built as part of the staged launch. In the meantime, the homepage has the full picture.</p>
-  <div class="stub-links">
-    <a href="index.html">← Back to homepage</a>
-    <a href="contact.html">Book a discovery call</a>
-  </div>
+<main>
+  <!-- page hero -->
+  <section class="section page-hero">
+    <div class="wrap">
+      <p class="eyebrow rise rise-2">About HumanyxAI</p>
+      <h1 class="rise rise-3">Twenty years of enterprise delivery, working for you <em>directly</em>.</h1>
+    </div>
+  </section>
+
+  <!-- founder story -->
+  <section class="section section-flush">
+    <div class="wrap story-split">
+      <figure class="story-media rise rise-3">
+        <img src="assets/hero-portrait.jpg" alt="A consultant at her desk working alongside the HumanyxAI assistant — human and machine, better together">
+      </figure>
+      <div class="story-body rise rise-4">
+        <p>HumanyxAI is one operator, not an agency. Behind it is a twenty-year career deploying complex systems inside some of Australia's largest organisations — thousands of projects, the full weight of enterprise governance, stakeholder politics and all.</p>
+        <p>That experience is now pointed at a specific, narrow problem: making AI actually useful in the two places it keeps getting oversold — how a business runs internally, and how it talks to its customers.</p>
+        <p>The independence is deliberate. No account managers, no resold platforms, no bench to keep busy. You brief the person who does the work, and the person who does the work answers for it.</p>
+        <p class="story-sig">Human by design<span>.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- values -->
+  <section class="section section-flush">
+    <div class="wrap">
+      <p class="eyebrow">Values</p>
+      <h2>How the work gets done.</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>Substance over spectacle</h3>
+          <p>No demo is a substitute for a real requirement gathered from the people who'll live with the result.</p>
+        </div>
+        <div class="value-card">
+          <h3>Honesty as the product</h3>
+          <p>The audit exists because vendor-agnostic truth-telling is worth paying for on its own — independent of whether it leads to a build.</p>
+        </div>
+        <div class="value-card">
+          <h3>Earned confidence</h3>
+          <p>Claims are backed by specifics — named engagements, real scale — not adjectives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ethics -->
+  <section class="section section-flush">
+    <div class="wrap">
+      <div class="ethics-panel">
+        <p class="eyebrow">Ethics</p>
+        <h2>Three commitments, in writing.</h2>
+        <div class="ethics-list">
+          <div class="eth"><b>01</b><span>We recommend the right tool for the client, even when it isn't ours to build.</span></div>
+          <div class="eth"><b>02</b><span>No deployment goes live without the people who'll be affected by it having been consulted.</span></div>
+          <div class="eth"><b>03</b><span>Data sovereignty and client data handling are treated as a trust obligation, not a compliance checkbox.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- final CTA -->
+  <section class="section section-flush cta-center">
+    <div class="wrap">
+      <p class="eyebrow">Next step</p>
+      <h2>Meet the person you'll actually be working with.</h2>
+      <div class="cta-row">
+        <a href="contact.html" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
+        <a href="demo.html" class="btn btn-ghost">Try the voice demo</a>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design"></a>
+        <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Services</h4>
+          <a href="consulting.html">Consulting</a>
+          <a href="voice-agents.html">Voice Agents</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 HumanyxAI · Sydney, Australia · ABN [TBD]</span>
+      <span>Data hosted onshore (ap-southeast-2) · Human by design</span>
+    </div>
+  </div>
+</footer>
 
 <script src="site.js"></script>
 </body>

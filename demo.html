@@ -3,26 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Demo — HumanyxAI</title>
-<meta name="description" content="HumanyxAI — independent Australian AI consultancy. Human by design.">
+<title>Live Demo — HumanyxAI Voice Agents</title>
+<meta name="description" content="The best way to judge a voice agent is the way your customers will — on an actual phone call. Leave your number and our agent will call you for a real conversation.">
+<meta property="og:title" content="Thirty seconds from now, your phone rings. Answer it.">
+<meta property="og:description" content="Leave your number and a HumanyxAI voice agent will call you for a real conversation. No app, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humanyxai.com/demo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="demo.css">
 <style>
-  .stub { min-height: 62vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; }
-  .stub .eyebrow { justify-content: center; }
-  .stub .eyebrow::after { content: ""; width: 22px; height: 1px; background: var(--blue); display: inline-block; }
-  .stub h1 { font-size: clamp(34px, 4vw, 48px); margin: 22px 0 16px; }
-  .stub p { color: var(--ink-soft); font-size: 15px; max-width: 52ch; }
-  .stub .stub-links { margin-top: 28px; display: flex; gap: 24px; font-size: 13.5px; font-weight: 500; }
-  .stub .stub-links a { color: var(--blue); border-bottom: 1px solid rgba(45,91,255,.3); transition: border-color .2s; }
-  .stub .stub-links a:hover { border-bottom-color: var(--blue); }
+  .call-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  /* hero dial panel — the star */
+  .dial-hero {
+    background: var(--ink);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .dial-hero::before {
+    content: "";
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,91,255,.28), transparent 70%);
+    top: -140px; right: -140px;
+    z-index: -1;
+  }
+  .dial-hero .eyebrow { color: rgba(255,255,255,.55); }
+  .dial-hero h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 2.8vw, 38px);
+    line-height: 1.15;
+    margin: 18px 0 14px;
+    color: #fff;
+  }
+  .dial-hero h2 em { font-style: italic; color: var(--blue-tint); }
+  .dial-hero > p { font-size: 14.5px; color: rgba(255,255,255,.7); line-height: 1.7; max-width: 44ch; margin-bottom: 30px; }
+
+  .dial-steps { display: flex; flex-direction: column; gap: 14px; margin-bottom: 34px; }
+  .dial-steps .step { display: flex; gap: 14px; align-items: baseline; font-size: 13.5px; color: rgba(255,255,255,.75); }
+  .dial-steps .step b {
+    font-family: var(--serif); font-weight: 600; color: var(--blue-tint); font-size: 14px;
+    min-width: 24px;
+  }
+
+  .dial-hero .dial-form input { background: rgba(255,255,255,.07); padding: 16px 18px; font-size: 15px; }
+  .dial-hero .dial-form button { padding: 16px 26px; font-size: 14px; }
+  .dial-hero .dial-note { margin-top: 16px; }
+
+  .dial-hero .dial-success { padding: 30px 0 10px; }
+
+  /* right column: compact studio */
+  .mini-studio { display: flex; flex-direction: column; gap: 20px; }
+  .mini-studio .picker-panel { padding: 20px 22px; }
+  .mini-studio .voice-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .mini-studio .voice-card { padding: 13px 13px 12px; }
+  .mini-studio .vc-avatar { width: 32px; height: 32px; font-size: 14px; }
+  .mini-studio .vc-play { width: 26px; height: 26px; }
+  .mini-studio .vc-name { font-size: 13px; }
+  .mini-studio .vc-desc { font-size: 10.5px; }
+
+  .mini-studio .console { flex: 1; display: flex; flex-direction: column; }
+  .mini-studio .transcript { min-height: 210px; max-height: 260px; flex: 1; }
+  .mini-studio .t-empty { height: 170px; font-size: 12.5px; }
+
+  @media (max-width: 1020px) {
+    .call-grid { grid-template-columns: 1fr; }
+    .mini-studio .voice-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .dial-hero { padding: 36px 26px; }
+  }
 </style>
 </head>
-<body>
+<body class="demo-body">
 
-<nav class="site-nav" aria-label="Primary">
+<nav class="site-nav rise rise-1" aria-label="Primary">
   <a href="index.html" class="nav-logo"><img src="assets/logo-nav.png" alt="HumanyxAI"></a>
   <div class="nav-links" id="nav-links">
     <a href="consulting.html">Consulting</a>
@@ -36,16 +107,129 @@
   </button>
 </nav>
 
-<main class="stub">
-  <p class="eyebrow">The Call — standalone demo</p>
-  <h1>Demo</h1>
-  <p>This page is being built as part of the staged launch. In the meantime, the homepage has the full picture.</p>
-  <div class="stub-links">
-    <a href="index.html">← Back to homepage</a>
-    <a href="contact.html">Book a discovery call</a>
+<main class="demo-wrap" data-demo>
+  <header class="demo-head rise rise-2">
+    <p class="eyebrow">Live Demonstration · Conversational Voice AI</p>
+    <h1>Thirty seconds from now, your phone rings. <em>Answer it.</em></h1>
+    <p>The best way to judge a voice agent is the way your customers will — on an actual phone call. Leave your number and our agent will call you for a real conversation.</p>
+  </header>
+
+  <div class="call-grid rise rise-3">
+    <!-- dial-out hero -->
+    <div class="dial-hero" data-dial>
+      <p class="eyebrow">The phone-first demo</p>
+      <h2>Have our agent <em>call you</em> — right now.</h2>
+      <p>No app, no signup, no sales call from a human afterwards unless you ask for one. Just a conversation with the technology, on your terms.</p>
+
+      <div class="dial-steps">
+        <div class="step"><b>01</b><span>Enter your mobile below — AU numbers for the demo.</span></div>
+        <div class="step"><b>02</b><span>Your agent calls within ~30 seconds. Ask it anything a customer would.</span></div>
+        <div class="step"><b>03</b><span>Hang up whenever you like. A transcript lands here so you can review how it did.</span></div>
+      </div>
+
+      <form class="dial-form">
+        <input type="tel" placeholder="0400 000 000" aria-label="Your mobile number">
+        <button type="submit">Call me now →</button>
+      </form>
+      <p class="dial-note">We never share your details · One demo call per number</p>
+
+      <div class="dial-success">
+        <div class="ds-ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9db4ff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+        <div class="ds-title">Dialling <span class="ds-num"></span> now</div>
+        <div class="ds-sub">Answer to meet your agent. The call record will appear on the right.</div>
+      </div>
+    </div>
+
+    <!-- compact studio -->
+    <div class="mini-studio">
+      <div class="picker-panel">
+        <p class="d-label">Pick the voice that calls you</p>
+        <div class="voice-grid">
+          <button class="voice-card active" data-voice="sarah" data-gender="f">
+            <div class="vc-top"><span class="vc-avatar">S</span>
+              <span class="vc-play" title="Preview"><svg width="9" height="11" viewBox="0 0 10 12" fill="currentColor"><path d="M0 0l10 6-10 6z"/></svg></span></div>
+            <div class="vc-name">Sarah</div>
+            <div class="vc-desc">Warm · SYD</div>
+          </button>
+          <button class="voice-card" data-voice="emma" data-gender="f">
+            <div class="vc-top"><span class="vc-avatar">E</span>
+              <span class="vc-play" title="Preview"><svg width="9" height="11" viewBox="0 0 10 12" fill="currentColor"><path d="M0 0l10 6-10 6z"/></svg></span></div>
+            <div class="vc-name">Emma</div>
+            <div class="vc-desc">Bright · BNE</div>
+          </button>
+          <button class="voice-card" data-voice="marcus" data-gender="m">
+            <div class="vc-top"><span class="vc-avatar">M</span>
+              <span class="vc-play" title="Preview"><svg width="9" height="11" viewBox="0 0 10 12" fill="currentColor"><path d="M0 0l10 6-10 6z"/></svg></span></div>
+            <div class="vc-name">Marcus</div>
+            <div class="vc-desc">Assured · MEL</div>
+          </button>
+          <button class="voice-card" data-voice="james" data-gender="m">
+            <div class="vc-top"><span class="vc-avatar">J</span>
+              <span class="vc-play" title="Preview"><svg width="9" height="11" viewBox="0 0 10 12" fill="currentColor"><path d="M0 0l10 6-10 6z"/></svg></span></div>
+            <div class="vc-name">James</div>
+            <div class="vc-desc">Easy · PER</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="console">
+        <div class="console-head">
+          <div class="ch-left">
+            <div class="ch-avatar">S</div>
+            <div>
+              <div class="ch-name">Sarah</div>
+              <div class="ch-status"><span class="status-dot"></span><span class="status-label">Ready when you are</span></div>
+            </div>
+          </div>
+          <div class="viz"></div>
+        </div>
+        <div class="transcript">
+          <div class="t-empty">
+            <p>Call record appears here.<br>On the phone — or right now in your browser.</p>
+          </div>
+        </div>
+        <div class="console-foot">
+          <p class="console-meta">Real-time transcript · Honest hand-off · AU data residency</p>
+          <button class="talk-btn">
+            <span class="mic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4"/></svg></span>
+            <span class="talk-label">Or talk in browser</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </main>
 
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design"></a>
+        <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Services</h4>
+          <a href="consulting.html">Consulting</a>
+          <a href="voice-agents.html">Voice Agents</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="demo.html">Demo</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 HumanyxAI · Sydney, Australia · ABN [TBD]</span>
+      <span>Data hosted onshore (ap-southeast-2) · Human by design</span>
+    </div>
+  </div>
+</footer>
+
 <script src="site.js"></script>
+<script src="demo.js"></script>
 </body>
 </html>
