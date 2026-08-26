@@ -351,13 +351,21 @@
     .studio-col .voice-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* ---- S5: how we work ---- */
-  .steps-grid {
+  /* ---- S5: how we work (media + steps split) ---- */
+  .how-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 64px;
+    align-items: center;
     margin-top: 48px;
   }
+  .how-media {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .how-media img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 4.6; object-position: 45% 40%; }
+  .how-steps { display: flex; flex-direction: column; gap: 28px; }
   .step-card { border-top: 1px solid var(--line); padding-top: 24px; }
   .step-card .s-num { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--ink-faint); }
   .step-card h3 { font-size: 20px; margin: 12px 0 10px; }
@@ -396,7 +404,9 @@
   .pillar p { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.7; }
 
   @media (max-width: 900px) {
-    .steps-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
+    .how-grid { grid-template-columns: 1fr; gap: 32px; margin-top: 36px; }
+    .how-media img { aspect-ratio: 16 / 10; object-position: 45% 35%; }
+    .how-steps { gap: 24px; }
     .why-panel { padding: 48px 28px; }
     .pillars { grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
   }
@@ -431,9 +441,12 @@
   .faq-item[open] .fq-icon { transform: rotate(45deg); }
   .faq-a { padding: 0 4px 26px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; max-width: 72ch; }
 
-  /* ---- S8: final CTA (dark panel) ---- */
+  /* ---- S8: final CTA (dark panel over brand imagery) ---- */
   .final-panel {
-    background: var(--ink);
+    background:
+      linear-gradient(rgba(23,22,29,.78), rgba(23,22,29,.86)),
+      url("assets/garden-bench.jpg") center 32% / cover no-repeat,
+      var(--ink);
     color: #fff;
     border-radius: var(--radius);
     padding: 96px 48px;
@@ -442,16 +455,6 @@
     overflow: hidden;
     isolation: isolate;
     box-shadow: 0 20px 50px -16px rgba(23,22,29,.4);
-  }
-  .final-panel::before {
-    content: "";
-    position: absolute;
-    width: 560px; height: 560px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(45,91,255,.25), transparent 70%);
-    bottom: -260px; left: 50%;
-    transform: translateX(-50%);
-    z-index: -1;
   }
   .final-panel h2 { font-size: clamp(32px, 3.8vw, 50px); color: #fff; margin: 0 auto; max-width: 18ch; }
   .final-panel h2 em { font-style: italic; font-weight: 500; color: var(--blue-tint); }
@@ -704,7 +707,7 @@
           <div class="ds-sub">Answer to meet your agent. The call record will appear on the left.</div>
         </div>
 
-        <p class="d-more dial-more">Prefer the full-page version? <a href="demo.html">Open the standalone demo →</a></p>
+        <p class="dial-more">Prefer the full-page version? <a href="demo.html">Open the standalone demo →</a></p>
       </div>
     </div>
   </div>
@@ -715,21 +718,26 @@
   <div class="wrap">
     <p class="eyebrow">How engagements run</p>
     <h2>How we work.</h2>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="s-num">01</div>
-        <h3>We listen.</h3>
-        <p>Discovery with the people who'll actually live with the result — not just the person signing.</p>
-      </div>
-      <div class="step-card">
-        <div class="s-num">02</div>
-        <h3>We recommend.</h3>
-        <p>A written, vendor-agnostic position: what to buy, what to build, what to skip. Yours to keep either way.</p>
-      </div>
-      <div class="step-card">
-        <div class="s-num">03</div>
-        <h3>We deliver — and stay.</h3>
-        <p>Deployed end-to-end, supported on-site, and reported against the numbers that justified it.</p>
+    <div class="how-grid">
+      <figure class="how-media">
+        <img src="assets/team-boardroom.jpg" alt="A discovery session: stakeholders around a boardroom table mapping a user journey, with the HumanyxAI assistant sitting in">
+      </figure>
+      <div class="how-steps">
+        <div class="step-card">
+          <div class="s-num">01</div>
+          <h3>We listen.</h3>
+          <p>Discovery with the people who'll actually live with the result — not just the person signing.</p>
+        </div>
+        <div class="step-card">
+          <div class="s-num">02</div>
+          <h3>We recommend.</h3>
+          <p>A written, vendor-agnostic position: what to buy, what to build, what to skip. Yours to keep either way.</p>
+        </div>
+        <div class="step-card">
+          <div class="s-num">03</div>
+          <h3>We deliver — and stay.</h3>
+          <p>Deployed end-to-end, supported on-site, and reported against the numbers that justified it.</p>
+        </div>
       </div>
     </div>
   </div>
