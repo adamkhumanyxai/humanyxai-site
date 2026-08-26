@@ -242,3 +242,15 @@
   text-align: center;
   padding: 12px 18px 0;
 }
+
+/* reduced motion: static demo states (mirrors the styles.css pattern) */
+@media (prefers-reduced-motion: reduce) {
+  .voice-card,
+  .voice-card .vc-play,
+  .talk-btn,
+  .dial-form input,
+  .dial-form button { transition: none; }
+  .t-row { animation: none; }
+  .viz.on span { animation: none; }
+  .dial-success .ds-ring { animation: none; }
+}

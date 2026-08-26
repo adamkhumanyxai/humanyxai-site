@@ -14,6 +14,9 @@ let callState = "idle"; // idle | connecting | live
 let t0 = null;
 let timers = [];
 
+// respect reduced-motion for JS-driven visuals (visualiser stays static)
+const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 const SCRIPT = [
   { who: "agent",  delay: 1200,  text: "Good afternoon, thanks for calling HumanyxAI — this is {name}. How can I help you today?" },
   { who: "caller", delay: 4200,  text: "Hi — I'm calling about getting an AI receptionist for our plumbing business. We keep missing calls while we're on jobs." },
@@ -104,7 +107,7 @@ function initDemo(root) {
       transcript.querySelectorAll(".t-row").forEach(r => r.remove());
       talkLabel.textContent = "End conversation";
       setStatus(statusDot, statusLabel, "live", "Live — speaking");
-      viz.classList.add("on");
+      if (!REDUCED_MOTION) viz.classList.add("on");
 
       // INTEGRATE: open realtime voice session (WebRTC/WebSocket to your agent stack)
       SCRIPT.forEach(line => {
