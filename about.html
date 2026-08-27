@@ -36,6 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero-portrait.jpg">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="reveal.css">
 <style>
   /* ---- founder story split ---- */
   .story-split {
@@ -152,9 +153,9 @@
   <!-- values -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">Values</p>
-      <h2>How the work gets done.</h2>
-      <div class="values-grid">
+      <p class="eyebrow" data-reveal>Values</p>
+      <h2 data-reveal>How the work gets done.</h2>
+      <div class="values-grid" data-reveal-group>
         <div class="value-card">
           <h3>Substance over spectacle</h3>
           <p>No demo is a substitute for a real requirement gathered from the people who'll live with the result.</p>
@@ -174,7 +175,7 @@
   <!-- ethics -->
   <section class="section section-flush">
     <div class="wrap">
-      <div class="ethics-panel">
+      <div class="ethics-panel" data-reveal>
         <p class="eyebrow">Ethics</p>
         <h2>Three commitments, in writing.</h2>
         <div class="ethics-list">
@@ -189,8 +190,8 @@
   <!-- final CTA -->
   <section class="section section-flush cta-center">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
-      <h2>Meet the person you'll actually be working with.</h2>
+      <p class="eyebrow" data-reveal>Next step</p>
+      <h2 data-reveal>Meet the person you'll actually be working with.</h2>
       <div class="cta-row">
         <a href="contact.html" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
         <a href="demo.html" class="btn btn-ghost">Try the voice demo</a>
@@ -206,7 +207,7 @@
         <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design" loading="lazy"></a>
         <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
       </div>
-      <div class="foot-cols">
+      <div class="foot-cols" data-reveal-group>
         <div class="foot-col">
           <h4>Services</h4>
           <a href="consulting.html">Consulting</a>
@@ -229,5 +230,6 @@
 </footer>
 
 <script src="site.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

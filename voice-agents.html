@@ -53,6 +53,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="reveal.css">
 <style>
   /* ---- demo CTA band ---- */
   .demo-band {
@@ -154,6 +155,118 @@
     .demo-band { padding: 32px 26px; }
     .missed-stat .num { min-width: 96px; font-size: 24px; }
   }
+
+  /* ---- The Ledger (LOCKED drop-in from review-assets/roi-ledger.html) ---- */
+  .hx-ledger {
+    --hx-ink: #17161d; --hx-ink-soft: #4b4a55; --hx-ink-faint: #8a8994;
+    --hx-blue: #2d5bff; --hx-blue-deep: #1f44cc; --hx-blue-tint: #9db4ff;
+    --hx-surface: #efeff2; --hx-surface-dim: #dcdce1; --hx-card: #ffffff;
+    --hx-line: rgba(23,22,29,.12); --hx-radius: 8px;
+    --hx-serif: "Playfair Display", Georgia, serif;
+    --hx-sans: "Inter", -apple-system, "Segoe UI", sans-serif;
+    --hx-shadow: 0 1px 2px rgba(23,22,29,.04), 0 12px 40px -12px rgba(23,22,29,.12);
+    font-family: var(--hx-sans); color: var(--hx-ink);
+    max-width: 1180px; margin: 0 auto; padding: 96px 32px 120px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hx-ledger *, .hx-ledger *::before, .hx-ledger *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .hx-ledger-head { max-width: 620px; margin-bottom: 64px; }
+  .hx-ledger-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--hx-ink-faint); display: flex; align-items: center; gap: 10px;
+  }
+  .hx-ledger-eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--hx-blue); }
+  .hx-ledger-head h2 {
+    font-family: var(--hx-serif); font-weight: 600; line-height: 1.08; letter-spacing: -0.01em;
+    font-size: clamp(34px, 4.4vw, 52px); margin: 18px 0 16px;
+  }
+  .hx-ledger-head h2 em { font-style: italic; font-weight: 500; color: var(--hx-blue); }
+  .hx-ledger-head p { color: var(--hx-ink-soft); font-size: 17px; line-height: 1.6; }
+
+  .hx-ledger-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    border: 1px solid var(--hx-line); border-radius: calc(var(--hx-radius) + 4px);
+    overflow: hidden; box-shadow: var(--hx-shadow);
+  }
+
+  /* left: inputs */
+  .hx-ledger-inputs { background: var(--hx-card); padding: 48px 44px; }
+  .hx-f-group { margin-bottom: 34px; }
+  .hx-f-group:last-child { margin-bottom: 0; }
+  .hx-f-label { display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 13px; font-weight: 600; letter-spacing: .04em; margin-bottom: 12px; }
+  .hx-f-label output { font-family: var(--hx-serif); font-size: 22px; font-weight: 600; letter-spacing: 0; }
+  .hx-f-hint { font-size: 12px; color: var(--hx-ink-faint); margin-top: 8px; }
+
+  .hx-trade-select {
+    width: 100%; appearance: none; padding: 13px 40px 13px 16px;
+    border: 1px solid var(--hx-line); border-radius: var(--hx-radius);
+    font: 500 15px var(--hx-sans); color: var(--hx-ink);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234b4a55' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 16px center, var(--hx-surface);
+    cursor: pointer;
+  }
+  .hx-trade-select:focus { outline: 2px solid var(--hx-blue); outline-offset: 2px; }
+
+  .hx-ledger input[type="range"] {
+    width: 100%; appearance: none; height: 2px; border-radius: 2px;
+    background: linear-gradient(to right, var(--hx-blue) var(--fill, 50%), var(--hx-surface-dim) var(--fill, 50%));
+    cursor: pointer;
+  }
+  .hx-ledger input[type="range"]::-webkit-slider-thumb {
+    appearance: none; width: 20px; height: 20px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--hx-blue);
+    box-shadow: 0 2px 8px rgba(23,22,29,.18); transition: transform .15s;
+  }
+  .hx-ledger input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .hx-ledger input[type="range"]::-moz-range-thumb {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--hx-blue); box-shadow: 0 2px 8px rgba(23,22,29,.18);
+  }
+  .hx-ledger input[type="range"]:focus-visible { outline: 2px solid var(--hx-blue); outline-offset: 6px; }
+
+  /* right: ink result panel */
+  .hx-ledger-result {
+    background: var(--hx-ink); color: #fff; padding: 48px 48px 44px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .hx-ledger-result::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(700px 400px at 90% 110%, rgba(45,91,255,.22), transparent 60%);
+    pointer-events: none;
+  }
+  .hx-r-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 10px; position: relative;
+  }
+  .hx-r-eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--hx-blue-tint); }
+  .hx-r-number {
+    font-family: var(--hx-serif); font-weight: 600; font-size: clamp(56px, 6.5vw, 88px);
+    line-height: 1; margin: 22px 0 6px; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums; transition: opacity .18s; position: relative;
+  }
+  .hx-r-number.hx-tick { opacity: .55; }
+  .hx-r-per { color: rgba(255,255,255,.6); font-size: 14px; margin-bottom: 36px; position: relative; }
+  .hx-r-lines { border-top: 1px solid rgba(255,255,255,.14); position: relative; }
+  .hx-r-line { display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: 14px; }
+  .hx-r-line span:first-child { color: rgba(255,255,255,.65); }
+  .hx-r-line span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .hx-r-line.hx-accent span:last-child { color: var(--hx-blue-tint); }
+  .hx-r-cta { margin-top: auto; padding-top: 34px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; position: relative; }
+  .hx-r-cta .hx-btn {
+    background: var(--hx-blue); color: #fff; padding: 14px 26px; border-radius: var(--hx-radius);
+    font-weight: 600; font-size: 14px; text-decoration: none; transition: background .2s; display: inline-block;
+  }
+  .hx-r-cta .hx-btn:hover { background: var(--hx-blue-deep); }
+  .hx-r-cta small { color: rgba(255,255,255,.5); font-size: 12px; max-width: 220px; line-height: 1.5; }
+
+  @media (max-width: 900px) { .hx-ledger-grid { grid-template-columns: 1fr; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hx-r-number, .hx-ledger input[type="range"]::-webkit-slider-thumb,
+    .hx-r-cta .hx-btn { transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -185,7 +298,7 @@
   <!-- demo CTA band -->
   <section class="section section-flush">
     <div class="wrap">
-      <div class="demo-band">
+      <div class="demo-band" data-reveal>
         <div>
           <h3>Judge it the way your customers will — <em>take the call.</em></h3>
           <p>The demo on this site is the actual technology, not a highlight reel. Leave your number and the agent rings you within thirty seconds.</p>
@@ -200,10 +313,10 @@
     <div class="wrap">
       <div class="problem-split">
         <div>
-          <p class="eyebrow">The problem</p>
-          <h2>The phone is still where the money is. It's also where it leaks.</h2>
-          <p class="lede">When the call goes to voicemail, the job usually goes to the next name on the list. The maths is not subtle.</p>
-          <div class="missed-stats">
+          <p class="eyebrow" data-reveal>The problem</p>
+          <h2 data-reveal>The phone is still where the money is. It's also where it leaks.</h2>
+          <p class="lede" data-reveal>When the call goes to voicemail, the job usually goes to the next name on the list. The maths is not subtle.</p>
+          <div class="missed-stats" data-reveal-group>
             <!-- PLACEHOLDER STATS — cited figures required before launch (open decision #7) -->
             <div class="missed-stat">
               <span class="num">[Stat A]</span>
@@ -220,9 +333,64 @@
           </div>
           <p class="stats-note">Figures pending sourced citations — publish only with references.</p>
         </div>
-        <figure class="p-media">
+        <figure class="p-media" data-reveal>
           <img loading="lazy" src="assets/tradie-reno.jpg" alt="A tradie up a ladder with a drill while the HumanyxAI agent takes the phone call he would have missed">
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- the Ledger: missed-call ROI calculator (LOCKED drop-in) -->
+  <section class="hx-ledger" aria-label="Missed call cost estimator">
+    <div class="hx-ledger-head">
+      <p class="hx-ledger-eyebrow" data-reveal>The missed-call ledger</p>
+      <h2 data-reveal>What silence costs <em>your</em> business.</h2>
+      <p data-reveal>Every unanswered call is a job that rang someone else. Three numbers, thirty seconds, and an honest estimate of what that adds up to.</p>
+    </div>
+
+    <div class="hx-ledger-grid" data-reveal>
+      <div class="hx-ledger-inputs">
+        <div class="hx-f-group">
+          <div class="hx-f-label"><label for="hxTrade">Your line of work</label></div>
+          <select id="hxTrade" class="hx-trade-select">
+            <option value="850">Plumber — avg job $850</option>
+            <option value="1200">Electrician — avg job $1,200</option>
+            <option value="9500">Builder / Renovation — avg job $9,500</option>
+            <option value="450">Pest control — avg job $450</option>
+            <option value="2200">Landscaping — avg job $2,200</option>
+            <option value="0">Custom — set your own job value</option>
+          </select>
+          <p class="hx-f-hint">Presets are indicative Australian averages — adjust freely.</p>
+        </div>
+        <div class="hx-f-group" id="hxJobValueGroup" hidden>
+          <div class="hx-f-label"><label for="hxJobValue">Average job value</label><output id="hxJobValueOut">$1,500</output></div>
+          <input type="range" id="hxJobValue" min="100" max="20000" step="50" value="1500">
+        </div>
+        <div class="hx-f-group">
+          <div class="hx-f-label"><label for="hxMissed">Missed calls per week</label><output id="hxMissedOut">6</output></div>
+          <input type="range" id="hxMissed" min="1" max="40" value="6">
+          <p class="hx-f-hint">Industry studies put tradie missed calls at 20–30% of inbound volume.</p>
+        </div>
+        <div class="hx-f-group">
+          <div class="hx-f-label"><label for="hxClose">Jobs won from answered calls</label><output id="hxCloseOut">35%</output></div>
+          <input type="range" id="hxClose" min="10" max="80" value="35">
+          <p class="hx-f-hint">How often an answered enquiry becomes paid work.</p>
+        </div>
+      </div>
+
+      <div class="hx-ledger-result">
+        <p class="hx-r-eyebrow">Walking past your phone</p>
+        <div class="hx-r-number" id="hxYearly" aria-live="polite">$0</div>
+        <p class="hx-r-per">in booked revenue, every year</p>
+        <div class="hx-r-lines">
+          <div class="hx-r-line"><span>Every month</span><span id="hxMonthly">$0</span></div>
+          <div class="hx-r-line"><span>Every week</span><span id="hxWeekly">$0</span></div>
+          <div class="hx-r-line hx-accent"><span>Jobs going to competitors, yearly</span><span id="hxJobs">0</span></div>
+        </div>
+        <div class="hx-r-cta">
+          <a class="hx-btn" href="demo.html">Hear how we answer</a>
+          <small>A voice agent answers on the first ring — including at 9pm on a Sunday.</small>
+        </div>
       </div>
     </div>
   </section>
@@ -230,9 +398,9 @@
   <!-- capability grid -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">What the agent does</p>
-      <h2>Six jobs, one phone number.</h2>
-      <div class="cap-grid">
+      <p class="eyebrow" data-reveal>What the agent does</p>
+      <h2 data-reveal>Six jobs, one phone number.</h2>
+      <div class="cap-grid" data-reveal-group>
         <div class="cap-card">
           <span class="cap-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
           <h3>Answers 24/7</h3>
@@ -270,9 +438,9 @@
   <!-- how deployment works -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">How deployment works</p>
-      <h2>Live in two to four weeks.</h2>
-      <div class="deploy-grid">
+      <p class="eyebrow" data-reveal>How deployment works</p>
+      <h2 data-reveal>Live in two to four weeks.</h2>
+      <div class="deploy-grid" data-reveal-group>
         <div class="deploy-step">
           <div class="d-wk">Week 1</div>
           <h3>Discovery &amp; call mapping</h3>
@@ -300,7 +468,7 @@
   <!-- industry strip -->
   <section class="section section-flush">
     <div class="wrap">
-      <div class="ind-panel">
+      <div class="ind-panel" data-reveal>
         <div>
           <p class="eyebrow">Who answers for</p>
           <h2>Built for the phones that can't be missed.</h2>
@@ -323,9 +491,9 @@
   <!-- mini FAQ -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">FAQ</p>
-      <h2>The questions everyone asks first.</h2>
-      <div class="faq-list">
+      <p class="eyebrow" data-reveal>FAQ</p>
+      <h2 data-reveal>The questions everyone asks first.</h2>
+      <div class="faq-list" data-reveal-group>
         <details class="faq-item">
           <summary>Will it sound like a robot?<span class="fq-icon">+</span></summary>
           <div class="faq-a">Judge for yourself — the demo on this site is the actual technology, not a highlight reel. Pick a voice, take the call.</div>
@@ -345,8 +513,8 @@
   <!-- final CTA -->
   <section class="section section-flush cta-center">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
-      <h2>Hear it answer. Then decide.</h2>
+      <p class="eyebrow" data-reveal>Next step</p>
+      <h2 data-reveal>Hear it answer. Then decide.</h2>
       <div class="cta-row">
         <a href="demo.html" class="btn btn-primary">Try the live demo <span class="arrow">→</span></a>
         <a href="contact.html" class="btn btn-ghost">Book a discovery call</a>
@@ -362,7 +530,7 @@
         <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design" loading="lazy"></a>
         <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
       </div>
-      <div class="foot-cols">
+      <div class="foot-cols" data-reveal-group>
         <div class="foot-col">
           <h4>Services</h4>
           <a href="consulting.html">Consulting</a>
@@ -385,5 +553,45 @@
 </footer>
 
 <script src="site.js"></script>
+<script src="reveal.js" defer></script>
+<script>
+/* The Ledger — missed-call ROI calculator (LOCKED drop-in) */
+(function () {
+  const $ = id => document.getElementById(id);
+  const fmt = n => '$' + Math.round(n).toLocaleString('en-AU');
+  const state = { job: 850, missed: 6, close: 35 };
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function paint(el, min, max) {
+    el.style.setProperty('--fill', ((el.value - min) / (max - min) * 100) + '%');
+  }
+  function calc() {
+    const yearly = state.job * state.missed * (state.close / 100) * 52;
+    const n = $('hxYearly');
+    if (!reduceMotion) {
+      n.classList.add('hx-tick');
+      setTimeout(() => n.classList.remove('hx-tick'), 120);
+    }
+    n.textContent = fmt(yearly);
+    $('hxMonthly').textContent = fmt(yearly / 12);
+    $('hxWeekly').textContent = fmt(yearly / 52);
+    $('hxJobs').textContent = Math.round(state.missed * (state.close / 100) * 52).toLocaleString('en-AU');
+  }
+  function bind(el, min, max, fn) {
+    el.addEventListener('input', () => { paint(el, min, max); fn(+el.value); calc(); });
+    paint(el, min, max);
+  }
+  $('hxTrade').addEventListener('change', e => {
+    const v = +e.target.value;
+    $('hxJobValueGroup').hidden = v !== 0;
+    state.job = v > 0 ? v : +$('hxJobValue').value;
+    calc();
+  });
+  bind($('hxJobValue'), 100, 20000, v => { state.job = v; $('hxJobValueOut').textContent = fmt(v); });
+  bind($('hxMissed'), 1, 40, v => { state.missed = v; $('hxMissedOut').textContent = v; });
+  bind($('hxClose'), 10, 80, v => { state.close = v; $('hxCloseOut').textContent = v + '%'; });
+  calc();
+})();
+</script>
 </body>
 </html>

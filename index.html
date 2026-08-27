@@ -86,6 +86,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero-poster.jpg">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="reveal.css">
 <link rel="stylesheet" href="demo.css">
 <style>
   /* Hero — locked Concept D "Cinematic Split" (ported from reference/hero-d.html) */
@@ -494,10 +495,10 @@
 <!-- S2: the problem -->
 <section class="section problem" id="the-problem">
   <div class="wrap">
-    <p class="eyebrow">The gap</p>
-    <h2>AI has a delivery problem, not a capability problem.</h2>
-    <p class="lede">The tools are genuinely good now. What's failing is the last mile — the discovery nobody did, the stakeholder nobody asked, the workflow nobody mapped before the demo got applause. That's the gap HumanyxAI exists to close.</p>
-    <div class="stat-cards">
+    <p class="eyebrow" data-reveal>The gap</p>
+    <h2 data-reveal>AI has a delivery problem, not a capability problem.</h2>
+    <p class="lede" data-reveal>The tools are genuinely good now. What's failing is the last mile — the discovery nobody did, the stakeholder nobody asked, the workflow nobody mapped before the demo got applause. That's the gap HumanyxAI exists to close.</p>
+    <div class="stat-cards" data-reveal-group>
       <!-- PLACEHOLDER STATS — cited figures required before launch (open decision #7) -->
       <div class="stat-card">
         <div class="num">[Stat A]</div>
@@ -521,9 +522,9 @@
 <!-- S3: what we do — service index -->
 <section class="section services" id="what-we-do">
   <div class="wrap">
-    <p class="eyebrow">What we do</p>
-    <h2>Three ways in. One standard of work.</h2>
-    <div class="services-index">
+    <p class="eyebrow" data-reveal>What we do</p>
+    <h2 data-reveal>Three ways in. One standard of work.</h2>
+    <div class="services-index" data-reveal-group>
       <a class="index-row" href="consulting.html">
         <span class="idx-num">01</span>
         <div>
@@ -560,8 +561,8 @@
 <section class="section demo-section" id="demo">
   <div class="wrap">
     <header class="demo-sec-head">
-      <p class="eyebrow">Live demonstration</p>
-      <h2>Thirty seconds from now, your phone rings. <em>Answer it.</em></h2>
+      <p class="eyebrow" data-reveal>Live demonstration</p>
+      <h2 data-reveal>Thirty seconds from now, your phone rings. <em>Answer it.</em></h2>
       <p>The best way to judge a voice agent is the way your customers will — on an actual phone call. Leave your number and our agent will call you for a real conversation.</p>
     </header>
 
@@ -657,13 +658,13 @@
 <!-- S5: how we work -->
 <section class="section how" id="how-we-work">
   <div class="wrap">
-    <p class="eyebrow">How engagements run</p>
-    <h2>How we work.</h2>
+    <p class="eyebrow" data-reveal>How engagements run</p>
+    <h2 data-reveal>How we work.</h2>
     <div class="how-grid">
-      <figure class="how-media">
+      <figure class="how-media" data-reveal>
         <img loading="lazy" src="assets/team-boardroom.jpg" alt="A discovery session: stakeholders around a boardroom table mapping a user journey, with the HumanyxAI assistant sitting in">
       </figure>
-      <div class="how-steps">
+      <div class="how-steps" data-reveal-group>
         <div class="step-card">
           <div class="s-num">01</div>
           <h3>We listen.</h3>
@@ -687,7 +688,7 @@
 <!-- S6: why HumanyxAI -->
 <section class="section why" id="why">
   <div class="wrap">
-    <div class="why-panel">
+    <div class="why-panel" data-reveal>
       <h2>Why HumanyxAI</h2>
       <div class="pillars">
         <div class="pillar">
@@ -710,9 +711,9 @@
 <!-- S7: FAQ -->
 <section class="section faq" id="faq">
   <div class="wrap">
-    <p class="eyebrow">FAQ</p>
-    <h2>Frequently asked questions.</h2>
-    <div class="faq-list">
+    <p class="eyebrow" data-reveal>FAQ</p>
+    <h2 data-reveal>Frequently asked questions.</h2>
+    <div class="faq-list" data-reveal-group>
       <details class="faq-item">
         <summary>Do we even need AI? (Be honest.)<span class="fq-icon">+</span></summary>
         <div class="faq-a">Maybe not. That's what the audit is for — and "you don't need us" is a finding we're happy to charge for, because it saves you far more than it costs.</div>
@@ -744,7 +745,7 @@
 <!-- S8: final CTA -->
 <section class="section final-cta" id="contact-cta">
   <div class="wrap">
-    <div class="final-panel">
+    <div class="final-panel" data-reveal>
       <h2>Talk to a <em>human</em> about the machines.</h2>
       <div class="cta-row">
         <a href="contact.html" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
@@ -761,7 +762,7 @@
         <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design" loading="lazy"></a>
         <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
       </div>
-      <div class="foot-cols">
+      <div class="foot-cols" data-reveal-group>
         <div class="foot-col">
           <h4>Services</h4>
           <a href="consulting.html">Consulting</a>
@@ -784,6 +785,7 @@
 </footer>
 
 <script src="site.js"></script>
+<script src="reveal.js" defer></script>
 <script src="demo.js"></script>
 </body>
 </html>

@@ -54,6 +54,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/team-floor.jpg">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="reveal.css">
 <style>
   /* ---- audit coverage blocks ---- */
   .cover-grid {
@@ -161,9 +162,9 @@
   <!-- what the audit covers -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">What the audit covers</p>
-      <h2>Five things, done properly.</h2>
-      <div class="cover-grid">
+      <p class="eyebrow" data-reveal>What the audit covers</p>
+      <h2 data-reveal>Five things, done properly.</h2>
+      <div class="cover-grid" data-reveal-group>
         <div class="cover-card">
           <div class="c-num">01</div>
           <h3>Current-state assessment</h3>
@@ -196,7 +197,7 @@
   <!-- who it's for -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">Who it's for</p>
+      <p class="eyebrow" data-reveal>Who it's for</p>
       <div class="who-panel">
         <p>Organisations that suspect AI could help but don't trust the pitch-deck version. If you've sat through three vendor demos and still can't answer "what does this do on a Tuesday morning?" — this is the engagement.</p>
       </div>
@@ -206,7 +207,7 @@
   <!-- fixed price card -->
   <section class="section section-flush">
     <div class="wrap">
-      <div class="price-panel">
+      <div class="price-panel" data-reveal>
         <div>
           <p class="eyebrow">The engagement</p>
           <h3>One audit. Fixed price. No trailing obligation.</h3>
@@ -226,9 +227,9 @@
   <!-- mini FAQ -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">FAQ</p>
-      <h2>Fair questions.</h2>
-      <div class="faq-list">
+      <p class="eyebrow" data-reveal>FAQ</p>
+      <h2 data-reveal>Fair questions.</h2>
+      <div class="faq-list" data-reveal-group>
         <details class="faq-item">
           <summary>Are you going to sell us your own tools at the end?<span class="fq-icon">+</span></summary>
           <div class="faq-a">We build voice agents, yes — and the audit is still vendor-agnostic. If the right answer is an off-the-shelf tool that isn't ours, that's what the recommendation says. "You don't need us" is a finding we're happy to charge for.</div>
@@ -248,8 +249,8 @@
   <!-- final CTA -->
   <section class="section section-flush cta-center">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
-      <h2>Start with a conversation, not a contract.</h2>
+      <p class="eyebrow" data-reveal>Next step</p>
+      <h2 data-reveal>Start with a conversation, not a contract.</h2>
       <div class="cta-row">
         <a href="contact.html" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
         <a href="voice-agents.html" class="btn btn-ghost">See the voice agent specialisation</a>
@@ -265,7 +266,7 @@
         <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design" loading="lazy"></a>
         <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
       </div>
-      <div class="foot-cols">
+      <div class="foot-cols" data-reveal-group>
         <div class="foot-col">
           <h4>Services</h4>
           <a href="consulting.html">Consulting</a>
@@ -288,5 +289,6 @@
 </footer>
 
 <script src="site.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>

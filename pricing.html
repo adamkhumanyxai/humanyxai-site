@@ -42,6 +42,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="reveal.css">
 <style>
   /* ---- tier cards ---- */
   .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; align-items: stretch; }
@@ -123,7 +124,7 @@
   <!-- tiers -->
   <section class="section section-flush">
     <div class="wrap">
-      <div class="tier-grid">
+      <div class="tier-grid" data-reveal-group>
         <div class="tier-card">
           <div class="t-name">AI Audit</div>
           <div class="t-hook">Listen first, build second.</div>
@@ -173,7 +174,7 @@
       </div>
 
       <!-- risk reversal — PENDING client confirmation (open decision #6) -->
-      <div class="risk-panel">
+      <div class="risk-panel" data-reveal>
         <div class="r-tag">[Pending confirmation — do not publish until approved]</div>
         <p>First 14 days free. If it doesn't book you a job, <em>you don't pay.</em></p>
         <p class="r-note">Risk-reversal offer for voice agent engagements — held from publication until the client confirms willingness to stand behind it.</p>
@@ -184,9 +185,9 @@
   <!-- what's always included -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">Whichever door you take</p>
-      <h2>Always included.</h2>
-      <div class="always-list">
+      <p class="eyebrow" data-reveal>Whichever door you take</p>
+      <h2 data-reveal>Always included.</h2>
+      <div class="always-list" data-reveal-group>
         <div class="al"><b>—</b><span>Discovery with the people who'll live with the result, not just the person signing.</span></div>
         <div class="al"><b>—</b><span>Plain-English written positions and reporting. No dashboard theatre.</span></div>
         <div class="al"><b>—</b><span>Australian data residency. Sovereignty is a trust obligation here, not a footnote.</span></div>
@@ -198,9 +199,9 @@
   <!-- FAQ -->
   <section class="section section-flush">
     <div class="wrap">
-      <p class="eyebrow">FAQ</p>
-      <h2>Money questions.</h2>
-      <div class="faq-list">
+      <p class="eyebrow" data-reveal>FAQ</p>
+      <h2 data-reveal>Money questions.</h2>
+      <div class="faq-list" data-reveal-group>
         <details class="faq-item">
           <summary>Why is the audit a fixed price?<span class="fq-icon">+</span></summary>
           <div class="faq-a">Because "it depends" is how consulting bills grow teeth. The scope is agreed up front, the price is fixed, and the written recommendation is yours whether or not we ever work together again.</div>
@@ -220,8 +221,8 @@
   <!-- final CTA -->
   <section class="section section-flush cta-center">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
-      <h2>Pick a door. Or ask which one fits.</h2>
+      <p class="eyebrow" data-reveal>Next step</p>
+      <h2 data-reveal>Pick a door. Or ask which one fits.</h2>
       <div class="cta-row">
         <a href="contact.html" class="btn btn-primary">Book a discovery call <span class="arrow">→</span></a>
         <a href="demo.html" class="btn btn-ghost">Try the voice demo</a>
@@ -237,7 +238,7 @@
         <a href="index.html"><img src="assets/logo-full.png" alt="HumanyxAI — Human by design" loading="lazy"></a>
         <p class="foot-tag">Enterprise-grade conversations without enterprise-grade timelines.</p>
       </div>
-      <div class="foot-cols">
+      <div class="foot-cols" data-reveal-group>
         <div class="foot-col">
           <h4>Services</h4>
           <a href="consulting.html">Consulting</a>
@@ -260,5 +261,6 @@
 </footer>
 
 <script src="site.js"></script>
+<script src="reveal.js" defer></script>
 </body>
 </html>
