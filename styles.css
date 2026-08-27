@@ -128,6 +128,8 @@ img, video { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .rise { animation: none; opacity: 1; }
+  .p-media img, .how-media img, .ind-media img, .hero-media img, .story-media img,
+  .skip-link, .foot-brand a { transition: none !important; transform: none !important; }
 }
 
 /* ---------- sticky site nav (frosted on scroll) ---------- */
@@ -297,4 +299,69 @@ img, video { display: block; max-width: 100%; }
   .page-hero { padding: 64px 0 48px; }
   .hero-split { grid-template-columns: 1fr; gap: 36px; }
   .hero-split .hero-media img { aspect-ratio: 16 / 10; }
+}
+
+/* ============================================================
+   Elevation layer — polish pass (locked tokens/components intact)
+   ============================================================ */
+
+/* cleaner rag on headlines and ledes (progressive enhancement) */
+h1, h2, h3 { text-wrap: balance; }
+.lede, .foot-tag { text-wrap: pretty; }
+
+/* no grey flash on tap (mobile) */
+a, button, summary, input, select { -webkit-tap-highlight-color: transparent; }
+
+/* keyboard skip link — hidden until focused */
+.skip-link {
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 100;
+  background: var(--ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  transform: translateY(-220%);
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.skip-link:focus-visible { transform: translateY(0); outline-color: var(--blue-tint); }
+
+/* wayfinding: persistent underline for the current page */
+.nav-links a[aria-current="page"] { color: var(--ink); }
+.nav-links a[aria-current="page"]::after { width: 100%; }
+
+/* button press feedback */
+.btn:active { transform: translateY(0); transition-duration: .1s; }
+
+/* framed media: slow editorial zoom on hover (frames are overflow:hidden) */
+.p-media img, .how-media img, .ind-media img, .hero-media img, .story-media img {
+  transition: transform 1.4s cubic-bezier(.22,1,.36,1);
+}
+.p-media:hover img, .how-media:hover img, .ind-media:hover img, .hero-media:hover img, .story-media:hover img {
+  transform: scale(1.03);
+}
+
+/* footer brand mark settles on hover */
+.foot-brand a { display: inline-block; transition: opacity .25s; }
+.foot-brand a:hover { opacity: .75; }
+
+/* mobile sticky CTA — the primary action stays reachable with the nav cta hidden */
+.mobile-cta { display: none; }
+@media (max-width: 900px) {
+  body { padding-bottom: 66px; }
+  .mobile-cta {
+    display: block;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 49;
+    padding: 10px 24px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255,255,255,.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .mobile-cta .btn { width: 100%; justify-content: center; padding: 13px 20px; }
+  .site-footer { margin-bottom: 0; }
 }
